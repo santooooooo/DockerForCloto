@@ -1,0 +1,27 @@
+version: '3.3'
+services:
+        php:
+                build:
+                        context: .
+                        dockerfile: ./php/Dockerfile
+                ports:
+                        - 80:80
+                        - 6001:6001
+                links:
+                        - db
+                        - redis
+        db:
+                image: mariadb
+                restart: always
+                environment:
+                        MYSQL_ROOT_PASSWORD: root 
+                        MYSQL_USER: cloto
+                        MYSQL_PASSWORD: cloto
+                        MYSQL_DATABASE: cloto
+                ports:
+                        - 3306:3306
+        redis:
+                image: redis:latest
+                ports:
+                        - 6379:6379
+                command: redis-server
