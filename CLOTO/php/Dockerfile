@@ -4,11 +4,11 @@ FROM php:7.4-apache
 RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get -y install default-mysql-server default-mysql-client
 RUN apt-get -y update
-RUN apt-get -y install vim \
-	git \
+RUN apt-get -y install git \
 	sudo \
 	zip \
-	unzip
+	unzip \
+	nmap
 RUN git clone https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis
 RUN docker-php-ext-install pdo pdo_mysql redis
 
